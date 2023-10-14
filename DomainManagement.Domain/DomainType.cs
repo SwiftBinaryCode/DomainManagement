@@ -8,6 +8,6 @@ namespace DomainManagement.Domain
 
         public string OwnerName { get; set; } = string.Empty;
 
-        public int Ip {  get; set; }
+        public string Ip { get; set; } = string.Empty;
     }
 }
