@@ -16,7 +16,7 @@ namespace DomainManagement.Persistence
             });
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-            services.AddScoped<DomainTypeRepository, DomainTypeRepository>();
+            services.AddScoped<IDomainTypeRepository, DomainTypeRepository>();
             return services;
 
         }

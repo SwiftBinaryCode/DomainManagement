@@ -15,8 +15,8 @@ namespace DomainManagement.Persistence.Configurations
                    DomainName = "example.com",
                    OwnerName = "example",
                    Ip = "127.0.0.1",
-                   DateCreated = DateTime.UtcNow,
-                   DateModified = DateTime.UtcNow
+                   DateCreated = DateTime.Now,
+                   DateModified = DateTime.Now
                }
            );
 
