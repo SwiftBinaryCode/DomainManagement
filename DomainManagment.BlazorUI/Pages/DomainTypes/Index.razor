@@ -1,0 +1,63 @@
+﻿@page "/domaintypes/"
+
+<h3>Domain Types</h3>
+
+<div class="m-2 d-flex justify-content-end">
+    <button @onclick="CreateDomainType" class="btn btn-success">Add Domain Type</button>
+</div>
+
+@if (string.IsNullOrEmpty(Message) == false)
+{
+    <div class="alert alert-danger">
+        @Message
+    </div>
+}
+
+<div clas></div>
+@if (DomainTypes == null)
+{
+    <p>Loading Data...</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    DomainName
+                </th>
+                <th>
+                    Owner Name
+                </th>
+                <th>
+                    Ip
+                </th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+           @foreach (var domainType in DomainTypes)
+            {
+                <tr>
+                    <td>@domainType.Id </td>
+                    <td>@domainType.DomainName </td>
+                    <td>@domainType.OwnerName </td>
+                    <td>@domainType.Ip </td>
+
+                    <td>
+                            <button @onclick="@(() => EditDomainType(domainType.Id))" class="btn btn-warning">Edit</button>
+                            <button @onclick="@(() => DeleteDomainType(domainType.Id))" class="btn btn-danger">Delete</button>
+                        
+                        <button @onclick="@(() => DetailsDomainType(domainType.Id))" class="btn btn-info">Details</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+
+
