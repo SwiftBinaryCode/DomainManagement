@@ -20,16 +20,16 @@ namespace DomainManagement.Application.Features.DomainType.Commands.CreateDomain
                 .MaximumLength(70).WithMessage("{PropertyName} must be fewer than 70 characters");
 
             RuleFor(q => q)
-                .MustAsync(LeaveTypeNameUnique)
+                .MustAsync(DomainTypeNameUnique)
                 .WithMessage("Leave type already exists");
 
 
             this._domainTypeRepository = domainTypeRepository;
         }
 
-        private Task<bool> LeaveTypeNameUnique(CreateDomainTypeCommand command, CancellationToken token)
+        private Task<bool> DomainTypeNameUnique(CreateDomainTypeCommand command, CancellationToken token)
         {
-            return _domainTypeRepository.IsLeaveTypeUnique(command.DomainName);
+            return _domainTypeRepository.IsDomainTypeUnique(command.DomainName);
         }
     }
 }

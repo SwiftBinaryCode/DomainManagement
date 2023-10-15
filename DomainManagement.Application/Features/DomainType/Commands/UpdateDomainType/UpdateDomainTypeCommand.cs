@@ -14,6 +14,6 @@ namespace DomainManagement.Application.Features.DomainType.Commands.UpdateDomain
 
         public string OwnerName { get; set; } = string.Empty;
 
-        public int Ip { get; set; }
+        public string Ip { get; set; }
     }
 }

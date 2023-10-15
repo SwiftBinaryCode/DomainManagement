@@ -11,9 +11,9 @@ namespace DomainManagement.Persistence.Repositories
         {
         }
 
-        public async Task<bool> IsLeaveTypeUnique(string name)
+        public async Task<bool> IsDomainTypeUnique(string name)
         {
-            return await _context.DomainTypes.AnyAsync(q => q.DomainName == name);
+            return await _context.DomainTypes.AnyAsync(q => q.DomainName == name) == false;
         }
     }
 }

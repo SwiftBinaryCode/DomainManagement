@@ -14,6 +14,6 @@ namespace DomainManagement.Application.Features.DomainType.Commands.CreateDomain
 
         public string OwnerName { get; set; } = string.Empty;
 
-        public int Ip { get; set; }
+        public string Ip { get; set; }
     }
 }

@@ -1,3 +1,4 @@
+using DomainManagement.Api.Middleware;
 using DomainManagement.Application;
 using DomainManagement.Infrastructure;
 using DomainManagement.Persistence;
@@ -28,6 +29,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

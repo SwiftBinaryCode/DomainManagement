@@ -38,7 +38,7 @@ namespace DomainManagement.Application.Features.DomainType.Commands.UpdateDomain
 
         private async Task<bool> DomainTypeNameUnique(UpdateDomainTypeCommand command, CancellationToken token)
         {
-            return await _domainTypeRepository.IsLeaveTypeUnique(command.DomainName);
+            return await _domainTypeRepository.IsDomainTypeUnique(command.DomainName);
         }
     }
 }
