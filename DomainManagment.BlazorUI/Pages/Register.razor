@@ -1,11 +1,12 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">DomainManagment.BlazorUI</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+﻿@page "/register"
+<h3>Register</h3>
+
+@if (string.IsNullOrEmpty(Message) == false)
+{
+    <div class="alert alert-danger">
+        @Message
     </div>
-</div>
+}
 
 <div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
     <nav class="flex-column">
@@ -29,7 +30,7 @@
                 <hr />
                 <div class="nav-item px-3">
                     <NavLink class="nav-link" href="domaintypes/">
-                        <span class="oi oi-list-rich" aria-hidden="true"></span> Domains
+                        <span class="oi oi-list-rich" aria-hidden="true"></span> Domain Types
                     </NavLink>
                 </div>
 

@@ -36,6 +36,7 @@ namespace DomainManagment.BlazorUI.Pages.DomainTypes
             if (response.Success)
             {
                 StateHasChanged();
+                NavigationManager.NavigateTo($"/domaintypes/");
             }
             else
             {

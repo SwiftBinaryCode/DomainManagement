@@ -47,9 +47,13 @@ else
                     <td>@domainType.OwnerName </td>
                     <td>@domainType.Ip </td>
 
+                    
                     <td>
+                        <AuthorizeView Roles="Administrator">
                             <button @onclick="@(() => EditDomainType(domainType.Id))" class="btn btn-warning">Edit</button>
                             <button @onclick="@(() => DeleteDomainType(domainType.Id))" class="btn btn-danger">Delete</button>
+                        </AuthorizeView>
+                          
                         
                         <button @onclick="@(() => DetailsDomainType(domainType.Id))" class="btn btn-info">Details</button>
                     </td>

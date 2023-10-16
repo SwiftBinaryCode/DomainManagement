@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DomainManagement.Application\DomainManagement.Application.csproj" />
+    <ProjectReference Include="..\DomainManagement.Identity\DomainManagement.Identity.csproj" />
     <ProjectReference Include="..\DomainManagement.Infrastructure\DomainManagement.Infrastructure.csproj" />
     <ProjectReference Include="..\DomainManagement.Persistence\DomainManagement.Persistence.csproj" />
   </ItemGroup>

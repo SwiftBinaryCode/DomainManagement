@@ -1,0 +1,16 @@
+﻿@page "/domaintypes/edit/{id:int}"
+@using Microsoft.AspNetCore.Authorization;
+@attribute [Authorize(Roles = "Administrator")]
+
+<h3>Edit Domain Type</h3>
+
+@if (string.IsNullOrEmpty(Message) == false)
+{
+    <div class="alert alert-danger">
+        @Message
+    </div>
+}
+
+<FormComponent ButtonText="Update" DomainType="domainType" OnValidSubmit="@EditDomainType"/>
+
+

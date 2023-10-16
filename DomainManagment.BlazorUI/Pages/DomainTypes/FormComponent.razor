@@ -1,0 +1,41 @@
+﻿
+
+<EditForm Model="@DomainType" OnValidSubmit="@OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <fieldset disabled="@Disabled">
+        <div class="form-group">
+            <label>DomainName:</label>
+            <div>
+                <InputText @bind-Value="@DomainType.DomainName" class="form-control" />
+                <ValidationMessage For="@(() => DomainType.DomainName)" />
+            </div>
+        </div>
+    </fieldset>
+    <fieldset disabled="@Disabled">
+        <div class="form-group">
+            <label>OwnerName:</label>
+            <div>
+                <InputText @bind-Value="@DomainType.OwnerName" class="form-control" />
+                <ValidationMessage For="@(() => DomainType.OwnerName)" />
+            </div>
+        </div>
+    </fieldset>
+    <fieldset disabled="@Disabled">
+        <div class="form-group">
+            <label>IP:</label>
+            <div>
+                <InputText @bind-Value="@DomainType.Ip" class="form-control" />
+                <ValidationMessage For="@(() => DomainType.Ip)" />
+            </div>
+        </div>
+    </fieldset>
+    @if (!Disabled)
+        {
+            <button type="submit" class="btn btn-success btn-block">
+                @ButtonText
+            </button>
+        }
+        <BackToList Target="domaintypes" />
+</EditForm>

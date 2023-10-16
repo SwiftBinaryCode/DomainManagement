@@ -1,0 +1,14 @@
+﻿@page "/domaintypes/create/"
+@using Microsoft.AspNetCore.Authorization;
+@attribute [Authorize(Roles ="Administrator")]
+<h3>Create Domain Type</h3>
+
+@if (string.IsNullOrEmpty(Message) == false)
+{
+    <div class="alert alert-danger">
+        @Message
+    </div>
+}
+
+<FormComponent ButtonText="Create" DomainType="domainType" OnValidSubmit="@CreateDomainType" />
+

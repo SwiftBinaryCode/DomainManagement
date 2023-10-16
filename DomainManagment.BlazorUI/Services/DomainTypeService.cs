@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Blazored.LocalStorage;
 using DomainManagment.BlazorUI.Contracts;
 using DomainManagment.BlazorUI.Models.DomainTypes;
 using DomainManagment.BlazorUI.Services.Base;
@@ -9,7 +10,7 @@ namespace DomainManagment.BlazorUI.Services
     {
         private readonly IMapper _mapper;
 
-        public DomainTypeService(IClient client, IMapper mapper) : base(client)
+        public DomainTypeService(IClient client, IMapper mapper, ILocalStorageService localStorageService) : base(client, localStorageService)
         {
             this._mapper = mapper;
         }
@@ -19,6 +20,7 @@ namespace DomainManagment.BlazorUI.Services
         
             try
             {
+                await AddBearerToken();
                 var createDomainTypeCommand = _mapper.Map<CreateDomainTypeCommand>(domainType);
                 await _client.DomainTypePOSTAsync(createDomainTypeCommand);
                 return new Response<Guid>()
@@ -37,6 +39,7 @@ namespace DomainManagment.BlazorUI.Services
         {
             try
             {
+                await AddBearerToken();
                 await _client.DomainTypeDELETEAsync(id);
                 return new Response<Guid>() { Success = true };
             }
@@ -48,13 +51,15 @@ namespace DomainManagment.BlazorUI.Services
 
         public async Task<DomainTypeVM> GetDomainTypeDetails(int id)
         {
+            await AddBearerToken();
             var domainType = await _client.DomainTypeGETAsync(id);
             return _mapper.Map<DomainTypeVM>(domainType);
         }
 
         public async Task<List<DomainTypeVM>> GetDomainTypes()
         {
-           var domainTypes = await _client.DomainTypeAllAsync();
+            await AddBearerToken();
+            var domainTypes = await _client.DomainTypeAllAsync();
            return _mapper.Map<List<DomainTypeVM>>(domainTypes);
         }
 
@@ -62,7 +67,7 @@ namespace DomainManagment.BlazorUI.Services
         {
             try
             {
-              
+                await AddBearerToken();
                 var updateDomainTypeCommand = _mapper.Map<UpdateDomainTypeCommand>(domainType);
                 await _client.DomainTypePUTAsync(id.ToString(), updateDomainTypeCommand);
                 return new Response<Guid>()
