@@ -1,5 +1,6 @@
 ﻿using DomainManagement.Api.Models;
 using DomainManagement.Application.Exceptions;
+using Newtonsoft.Json;
 using System.Net;
 
 namespace DomainManagement.Api.Middleware
@@ -7,9 +8,12 @@ namespace DomainManagement.Api.Middleware
     public class ExceptionMiddleware
     {
         private readonly RequestDelegate _next;
-        public ExceptionMiddleware(RequestDelegate next)
+        private readonly ILogger<ExceptionMiddleware> _logger;
+
+        public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
         {
             _next = next;
+            this._logger = logger;
         }
 
         public async Task InvokeAsync(HttpContext httpContext)
@@ -64,6 +68,8 @@ namespace DomainManagement.Api.Middleware
             }
 
             httpContext.Response.StatusCode = (int)statusCode;
+            var logMessage = JsonConvert.SerializeObject(problem);
+            _logger.LogError(logMessage);
             await httpContext.Response.WriteAsJsonAsync(problem);
 
         }

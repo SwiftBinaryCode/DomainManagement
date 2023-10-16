@@ -1,3 +1,4 @@
+using Blazored.Toast.Services;
 using DomainManagment.BlazorUI.Contracts;
 using DomainManagment.BlazorUI.Models.DomainTypes;
 using Microsoft.AspNetCore.Components;
@@ -11,6 +12,9 @@ namespace DomainManagment.BlazorUI.Pages.DomainTypes
 
         [Inject]
         public IDomainTypeService DomainTypeService { get; set; }
+
+        [Inject]
+        IToastService toastService { get; set; }
 
         public List<DomainTypeVM> DomainTypes { get; private set; }
         public string Message { get; set; } = string.Empty;
@@ -35,8 +39,8 @@ namespace DomainManagment.BlazorUI.Pages.DomainTypes
             var response = await DomainTypeService.DeleteDomainType(id);
             if (response.Success)
             {
-                StateHasChanged();
-                NavigationManager.NavigateTo($"/domaintypes/");
+                toastService.ShowSuccess("Domain deleted Successfully");
+                await OnInitializedAsync();
             }
             else
             {

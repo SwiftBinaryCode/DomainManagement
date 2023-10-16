@@ -1,4 +1,5 @@
 using Blazored.LocalStorage;
+using Blazored.Toast;
 using DomainManagment.BlazorUI;
 using DomainManagment.BlazorUI.Contracts;
 using DomainManagment.BlazorUI.Handlers;
@@ -20,6 +21,7 @@ builder.Services.AddHttpClient<IClient, Client>(client => client.BaseAddress = n
 
 
 builder.Services.AddBlazoredLocalStorage();
+builder.Services.AddBlazoredToast();
 builder.Services.AddAuthorizationCore();
 builder.Services.AddScoped<AuthenticationStateProvider, ApiAuthenticationStateProvider>();
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
