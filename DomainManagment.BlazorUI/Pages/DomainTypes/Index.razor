@@ -2,9 +2,13 @@
 
 <h3>Domain Types</h3>
 
-<div class="m-2 d-flex justify-content-end">
-    <button @onclick="CreateDomainType" class="btn btn-success">Add Domain Type</button>
-</div>
+<AuthorizeView Roles="Administrator">
+    <div class="m-2 d-flex justify-content-end">
+        <button @onclick="CreateDomainType" class="btn btn-success">Add Domain Type</button>
+    </div>
+    
+</AuthorizeView>
+
 
 @if (string.IsNullOrEmpty(Message) == false)
 {
