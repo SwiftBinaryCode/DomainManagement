@@ -21,7 +21,7 @@ namespace DomainManagement.Application.Features.DomainType.Commands.CreateDomain
 
             RuleFor(q => q)
                 .MustAsync(DomainTypeNameUnique)
-                .WithMessage("Leave type already exists");
+                .WithMessage("Domain type already exists");
 
 
             this._domainTypeRepository = domainTypeRepository;

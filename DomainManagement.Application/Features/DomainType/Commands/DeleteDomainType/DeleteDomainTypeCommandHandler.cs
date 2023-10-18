@@ -1,19 +1,14 @@
-﻿using AutoMapper;
-using DomainManagement.Application.Contracts.Persistence;
+﻿using DomainManagement.Application.Contracts.Persistence;
 using DomainManagement.Application.Exceptions;
-using DomainManagement.Application.Features.DomainType.Commands.UpdateDomainType;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DomainManagement.Application.Features.DomainType.Commands.DeleteDomainType
 {
+    /*The DeleteDomainTypeCommandHandler class is a part of the implementation of the CQRS (Command Query Responsibility Segregation) pattern, used in combination with the MediatR library. 
+     * It's a command handler responsible for processing the DeleteDomainTypeCommand.*/
     public class DeleteDomainTypeCommandHandler : IRequestHandler<DeleteDomainTypeCommand, Unit>
     {
-       
+
         private readonly IDomainTypeRepository _domainTypeRepository;
 
         public DeleteDomainTypeCommandHandler(IDomainTypeRepository domainTypeRepository)
@@ -30,7 +25,7 @@ namespace DomainManagement.Application.Features.DomainType.Commands.DeleteDomain
             //verify that record exists
             if (domainTypeToDelete == null)
             {
-                throw new NotFoundException(nameof(DomainType),request.Id);
+                throw new NotFoundException(nameof(DomainType), request.Id);
             }
 
             //remove from database
@@ -40,4 +35,8 @@ namespace DomainManagement.Application.Features.DomainType.Commands.DeleteDomain
             return Unit.Value;
         }
     }
+
 }
+
+/*DeleteDomainTypeCommand is issued, ensuring efficient handling, verification, and execution of the deletion operation.*/
+

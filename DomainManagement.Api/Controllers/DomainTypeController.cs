@@ -14,16 +14,31 @@ namespace DomainManagement.Api.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
+    /// <summary>
+    /// Handles CRUD operations for domain types, utilizing the Mediator pattern for command and query handling.
+    /// </summary>
     public class DomainTypeController : ControllerBase
     {
+        /// <summary>
+        /// A mediator for handling the sending of commands and queries, providing a mechanism for 
+        /// decoupling and enhancing the testability and maintenance of the application.
+        /// </summary>
         private readonly IMediator _mediator;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DomainTypeController"/> class.
+        /// </summary>
+        /// <param name="mediator">The mediator for sending commands and queries.</param>
         public DomainTypeController(IMediator mediator)
         {
             this._mediator = mediator;
         }
 
-        // GET: api/<DomainTypeController>
+        /// <summary>
+        /// Retrieves all domain types.
+        /// </summary>
+        /// <returns>A list of domain type DTOs.</returns>
+        /// <response code="200">Returns the list of domain types.</response>
         [HttpGet]
         public async Task<List<DomainTypeDto>> Get()
         {
@@ -31,7 +46,13 @@ namespace DomainManagement.Api.Controllers
             return domainTypes;
         }
 
-        // GET api/<DomainTypeController>/5
+        /// <summary>
+        /// Retrieves a specific domain type by ID.
+        /// </summary>
+        /// <param name="id">The ID of the domain type.</param>
+        /// <returns>An ActionResult containing the specific domain type DTO.</returns>
+        /// <response code="200">Returns the domain type.</response>
+        /// <response code="404">If the domain type is not found.</response>
         [HttpGet("{id}")]
         public async Task<ActionResult<DomainTypeDto>> Get(int id)
         {
@@ -39,8 +60,13 @@ namespace DomainManagement.Api.Controllers
             return Ok(domainType);
         }
 
-
-        // POST api/<DomainTypeController>
+        /// <summary>
+        /// Creates a new domain type.
+        /// </summary>
+        /// <param name="domaintype">The command containing the details of the domain type to create.</param>
+        /// <returns>A response indicating the result of the creation operation.</returns>
+        /// <response code="201">Indicates that the domain type was created successfully.</response>
+        /// <response code="400">If the command is invalid.</response>
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
@@ -51,7 +77,13 @@ namespace DomainManagement.Api.Controllers
             return CreatedAtAction(nameof(Get), new { id = response });
         }
 
-        // PUT api/<DomainTypeController>
+        /// <summary>
+        /// Updates an existing domain type.
+        /// </summary>
+        /// <param name="domaintype">The command containing the updated details of the domain type.</param>
+        /// <returns>A response indicating the result of the update operation.</returns>
+        /// <response code="204">Indicates that the domain type was updated successfully.</response>
+        /// <response code="400">If the command is invalid.</response>
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(400)]
@@ -63,7 +95,13 @@ namespace DomainManagement.Api.Controllers
             return NoContent();
         }
 
-        // DELETE api/<DomainTypeController>/5
+        /// <summary>
+        /// Deletes a specific domain type by ID.
+        /// </summary>
+        /// <param name="id">The ID of the domain type to delete.</param>
+        /// <returns>A response indicating the result of the deletion operation.</returns>
+        /// <response code="204">Indicates that the domain type was deleted successfully.</response>
+        /// <response code="404">If the domain type is not found.</response>
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
